@@ -14,8 +14,14 @@ from sklearn.svm import SVC
 st.set_page_config(page_title="Cardiovascular Disease Prediction", page_icon="❤️", layout="wide")
 
 @st.cache_data
+from pathlib import Path
+import pandas as pd
+
+BASE_DIR = Path(__file__).resolve().parent
+
 def load_data():
-    return pd.read_csv("cardio_train.csv", sep=";")
+    data_path = BASE_DIR / "cardio_train.csv"
+    return pd.read_csv(data_path, sep=";")
 
 @st.cache_resource
 def train_models():
@@ -60,7 +66,6 @@ def train_models():
 models, feature_names, X_test, y_test, cleaned_df = train_models()
 
 st.title("❤️ Cardiovascular Disease Prediction")
-st.write("Machine-learning prediction app based on the Cardiovascular Disease dataset.")
 
 with st.sidebar:
     st.header("Model")
@@ -130,4 +135,3 @@ c3.metric("Selected model", model_name)
 with st.expander("Preview cleaned dataset"):
     st.dataframe(cleaned_df.head(20), use_container_width=True)
 
-st.caption("For educational/project demonstration only. This prediction should not be used as medical advice.")
