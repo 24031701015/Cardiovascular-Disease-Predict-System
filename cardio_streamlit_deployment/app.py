@@ -393,7 +393,6 @@ elif page == "Dataset":
         df.head(100),
         use_container_width=True
     )
-
     st.divider()
 
     st.subheader("Dataset Statistics")
@@ -402,15 +401,9 @@ elif page == "Dataset":
         df.describe(),
         use_container_width=True
     )
-
-
-
-
 elif page == "About Project":
 
     st.title("ℹ️ About Project")
-
-    
 
     st.divider()
 
